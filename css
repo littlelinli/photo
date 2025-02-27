@@ -1,25 +1,77 @@
-/* Mobile View (по умолчанию) */
-div {
+/* === Mobile First Approach (по умолчанию) === */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 10px;
+}
+
+figure {
     width: 100%;
-    display: block;
+    border: 2px solid #333;
+    padding: 10px;
+    text-align: center;
 }
 
-/* Tablet View (мин. ширина 772px) */
+img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* === Tablet View (min-width: 772px) === */
 @media screen and (min-width: 772px) {
-    div {
-        width: 45%;
-        display: inline-block;
-        vertical-align: top; /* Чтобы выровнять элементы */
+    .container {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    img {
-        max-height: 30vh; /* Максимальная высота изображений 30% от высоты экрана */
+    figure {
+        border-radius: 50%; /* Делаем фигуры круглыми */
+    }
+
+    figure:last-child {
+        grid-column: span 2; /* Последняя фигура занимает две колонки */
     }
 }
 
-/* Large Screen View (мин. ширина 998px) */
-@media screen and (min-width: 998px) {
-    div {
-        width: 30%;
+/* === Large Screen View (min-width: 992px) === */
+@media screen and (min-width: 992px) {
+    .container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    figure {
+        border-radius: 0; /* Убираем скругление */
+    }
+
+    figure:nth-child(3n) {
+        grid-column: span 2; /* Каждый третий элемент занимает 2 колонки */
+    }
+}
+
+/* === Prefers-Reduced-Motion (Отключаем плавную прокрутку) === */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* === Dark Mode (Темная тема) === */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #222;
+        color: #fff;
+    }
+
+    figure {
+        background-color: #333;
+        color: yellow;
+        border-color: black;
     }
 }

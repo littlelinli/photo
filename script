@@ -1,0 +1,26 @@
+function updateImage(element) {
+    console.log("Event triggered for: ", element);
+    
+    let img = element.querySelector("img");
+    let imageDiv = document.getElementById("image");
+
+    imageDiv.style.backgroundImage = `url(${img.src})`;
+    imageDiv.innerHTML = img.alt;
+}
+
+function resetImage() {
+    let imageDiv = document.getElementById("image");
+    
+    imageDiv.style.backgroundImage = "url('')";
+    imageDiv.innerHTML = "Hover over an image below to display here.";
+}
+
+function initializeGallery() {
+    console.log("Page loaded, initializing gallery...");
+    
+    let figures = document.querySelectorAll("figure");
+    
+    figures.forEach(fig => {
+        fig.setAttribute("tabindex", "0");
+    });
+}
